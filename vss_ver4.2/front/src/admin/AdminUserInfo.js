@@ -15,23 +15,28 @@ const AdminUserInfo = () => {
 		const fetchUserData = async () => {
 			try {
 				const response = await axios.get(`/select/${userId}`);
-				setUserData(response.data); // 사용자 데이터 설정
-
+				setUserData(response.data);
+				setNewGrade(response.data.userGrade); // 현재 등급으로 초기화
 			} catch (error) {
 				console.error('사용자 데이터를 가져오는 중 에러 발생:', error);
-				// 에러 처리 (예: 에러 메시지 표시)
+				alert('사용자 데이터를 가져오는데 실패했습니다.');
 			}
 		};
 
-		const userId = sessionStorage.getItem('userId');
-		if (!userId && !alertShown.current) {
-			alertShown.current = true;
-			alert('로그인 후 이용 바랍니다.');
-			navigate('/login');
-		} else {
-			fetchUserData();
-		}
-	}, [userId, navigate]);
+		fetchUserData();
+	}, [userId]);const fetchUserData = async () => {
+			try {
+				const response = await axios.get(`/select/${userId}`);
+				setUserData(response.data);
+				setNewGrade(response.data.userGrade); // 현재 등급으로 초기화
+			} catch (error) {
+				console.error('사용자 데이터를 가져오는 중 에러 발생:', error);
+				alert('사용자 데이터를 가져오는데 실패했습니다.');
+			}
+		};
+
+		fetchUserData();
+	}, [userId]);
 
 	// handleDelete 함수
 	const handleDelete = async () => {
