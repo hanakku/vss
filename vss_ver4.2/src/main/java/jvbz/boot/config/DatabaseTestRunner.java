@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseTestRunner implements CommandLineRunner {
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
