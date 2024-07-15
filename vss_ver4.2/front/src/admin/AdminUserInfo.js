@@ -24,18 +24,6 @@ const AdminUserInfo = () => {
 		};
 
 		fetchUserData();
-	}, [userId]);const fetchUserData = async () => {
-			try {
-				const response = await axios.get(`/select/${userId}`);
-				setUserData(response.data);
-				setNewGrade(response.data.userGrade); // 현재 등급으로 초기화
-			} catch (error) {
-				console.error('사용자 데이터를 가져오는 중 에러 발생:', error);
-				alert('사용자 데이터를 가져오는데 실패했습니다.');
-			}
-		};
-
-		fetchUserData();
 	}, [userId]);
 
 	// handleDelete 함수
